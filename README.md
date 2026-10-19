@@ -58,14 +58,15 @@ npm run serve     # 构建并起本地服务：http://localhost:4173
 ### 仓库设置步骤
 
 1. **建仓库**：在 GitHub 新建一个仓库（建议 Public；Pages 私有仓库需 Pro 计划）
-2. **关联并推送**（在本目录执
-   ```bash
-   git init -b main
-   git add -A
-   git commit -m "feat: 响应式阅读页 + 自动部署"
-   git remote add origin https://github.com/<你的用户名>/<仓库名>.git
+2. **关联并推送**（本地仓库已初始化并提交，**不要**再执行 `git init`；在 PowerShell 里逐条执行，目录和 URL 都要换成真实值）：
+
+   ```powershell
+   cd C:\Users\25195\WorkBuddy\2026-10-19-19-35-22\reader-site
+   git remote add origin https://github.com/<你的GitHub用户名>/<仓库名>.git
    git push -u origin main
    ```
+
+   `<你的GitHub用户名>/<仓库名>` 必须**整体替换**为真实地址，例如 `https://github.com/zhangsan/reader-site.git`；带着尖括号直接推送会被 GitHub 拒绝（HTTP 400）。若误加过占位符 remote，先 `git remote remove origin` 再加。
 3. **开启 Pages**：仓库 `Settings → Pages → Build and deployment → Source` 选择 **GitHub Actions**（新版仓库默认即此，无需改动）
 4. **查看部署**：`Actions` 标签页出现绿色对勾后，回到 `Settings → Pages`，顶部即显示地址：
    ```
@@ -75,6 +76,15 @@ npm run serve     # 构建并起本地服务：http://localhost:4173
 5. **日常更新**：编辑 `content/` 后 `git commit + push`，Actions 自动重新构建并发布（约 30–60 秒生效）
 
 > 无需配置任何 Secrets：GitHub 为工作流自动注入 `GITHUB_TOKEN`，权限已在 yml 中声明（`pages: write`、`id-token: write`）。
+
+### 常见错误
+
+| 现象 | 原因 | 解决 |
+|---|---|---|
+| `error: 400` | URL 里 `<占位符>` 未替换成真实仓库地址 | 替换为 `https://github.com/<用户名>/<仓库名>.git` 真实值，并先在 GitHub 建好仓库 |
+| `fatal: not a git repository` | 在上层工作区（workspace 根）执行了推送命令 | 先 `cd` 进入 `reader-site` 再执行 |
+| 根目录被 `git init`、`reader-site` 显示为 `160000` | 在包含子仓库的目录里又建了仓库，嵌套被记为 gitlink | 删除（改名）根目录的 `.git`；每个项目各自独立成仓库，互不嵌套 |
+| `warning: LF will be replaced by CRLF` | Windows 换行转换提示 | 本仓库已设 `core.autocrlf=false` 并统一为 LF，无副作用 |
 
 ### 工作流说明（deploy.yml）
 
