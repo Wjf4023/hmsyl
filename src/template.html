@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{SUBTITLE}}">
+<meta name="theme-color" content="#faf9f7">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <button class="icon-btn" id="tocBtn" aria-label="打开目录" aria-expanded="false" aria-controls="toc">&#9776;</button>
+    <div class="topbar__title">
+      <span class="brand">{{TITLE}}</span>
+      <span class="brand-now" id="chapterNow"></span>
+    </div>
+    <div class="topbar__actions">
+      <button class="icon-btn" id="fontDown" aria-label="减小字号" title="减小字号">A-</button>
+      <button class="icon-btn" id="fontUp" aria-label="增大字号" title="增大字号">A+</button>
+      <button class="icon-btn" id="themeBtn" aria-label="切换深浅色" title="深浅色">&#9790;</button>
+      <button class="btn btn--view" id="viewBtn" aria-pressed="false">逐屏</button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" hidden></div>
+
+<div class="layout">
+
+  <aside class="toc" id="toc" aria-label="章节目录">
+    <div class="toc__head">
+      <span class="toc__title">目录</span>
+      <button class="icon-btn toc__close" id="tocClose" aria-label="关闭目录">&times;</button>
+    </div>
+    <nav><ol class="toc__list" id="tocList">{{TOC}}</ol></nav>
+  </aside>
+
+  <main class="content" id="content">
+
+    <header class="cover">
+      <h1 class="cover__title">{{TITLE}}</h1>
+      <p class="cover__sub">{{SUBTITLE}}</p>
+      <p class="cover__meta">{{AUTHOR}} &middot; {{YEAR}}</p>
+      {{BANNER}}
+      <p class="cover__hint">本页内容为占位示例，便于替换。修改 <code>content/chapters/*.md</code> 后提交，站点会自动重新构建发布。</p>
+    </header>
+
+{{CHAPTERS}}
+
+    <footer class="footer">
+      <p>&copy; {{YEAR}} {{AUTHOR}} &middot; 由响应式阅读页模板生成</p>
+    </footer>
+
+  </main>
+</div>
+
+<nav class="snapnav" id="snapNav" hidden aria-label="逐屏翻页">
+  <button class="btn" id="snapPrev">&#8593; 上一屏</button>
+  <span class="snapnav__tip">逐屏模式</span>
+  <button class="btn" id="snapNext">下一屏 &#8595;</button>
+</nav>
+
+<button class="fab" id="toTop" aria-label="回到顶部">&#8593;</button>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

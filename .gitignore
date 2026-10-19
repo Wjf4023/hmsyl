@@ -1,0 +1,12 @@
+# 依赖
+node_modules/
+
+# 构建产物（CI 中自动生成，勿提交）
+dist/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

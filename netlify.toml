@@ -1,0 +1,4 @@
+# Netlify 备选配置（不用 GitHub Pages 时可用）
+[build]
+  command = "npm run build"
+  publish = "dist"
