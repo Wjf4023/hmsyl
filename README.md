@@ -48,17 +48,17 @@ npm run serve     # 构建并起本地服务：http://localhost:4173
 
 ### 需要的配置文件（均已就绪）
 
-| 文件 | 作用 |
-|---|---|
+| 文件                             | 作用                                       |
+| ------------------------------ | ---------------------------------------- |
 | `.github/workflows/deploy.yml` | 触发条件（推送 main / PR / 手动）、构建、上传产物、部署 Pages |
-| `package.json` | 约定 `npm run build` 构建入口 |
-| `.gitignore` | 不提交 `dist/`、`node_modules/`（产物由 CI 生成） |
-| `netlify.toml` | 备选：Netlify 的构建命令与发布目录 |
+| `package.json`                 | 约定 `npm run build` 构建入口                  |
+| `.gitignore`                   | 不提交 `dist/`、`node_modules/`（产物由 CI 生成）   |
+| `netlify.toml`                 | 备选：Netlify 的构建命令与发布目录                    |
 
 ### 仓库设置步骤
 
 1. **建仓库**：在 GitHub 新建一个仓库（建议 Public；Pages 私有仓库需 Pro 计划）
-2. **关联并推送**（在本目录执行）：
+2. **关联并推送**（在本目录执
    ```bash
    git init -b main
    git add -A
