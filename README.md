@@ -44,6 +44,16 @@ npm run serve     # 构建并起本地服务：http://localhost:4173
 3. 支持的 Markdown 子集：`##/###/####` 小标题、段落、`-` 无序列表、`1.` 有序列表、`>` 引用、`---` 分割线、`**加粗**`、`*斜体*`、`` `代码` ``、`[链接](url)`
 4. `npm run build` 本地确认效果，或直接提交推送，由 CI 自动构建部署
 
+### 从小说工程导入（推荐）
+
+`output/` 下按 `第XX章_章名.md` 写的章节，可一键导入本站（自动保留章名、剥离文首批注与章末钩子，正文原样）：
+
+```bash
+node tools/import-from-output.js --all          # 导入 output/ 下全部章节
+node tools/import-from-output.js 第04章_瓦市    # 导入指定章节
+# 之后照常：npm run build && git add -A && git commit && git push
+```
+
 ## 自动部署（GitHub Pages）
 
 ### 需要的配置文件（均已就绪）
